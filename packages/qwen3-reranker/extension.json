@@ -1,0 +1,44 @@
+{
+  "id": "qwen3-reranker",
+  "name": "Qwen3 Reranker 0.6B",
+  "version": "1.0.0",
+  "apiVersion": "1",
+  "type": "reranker",
+  "entrypoint": "dist/index.js",
+  "author": "community",
+  "homepage": "https://github.com/evinjohnn/natively-extensions",
+  "engines": {
+    "natively": ">=2.8.0"
+  },
+  "permissions": [
+    "filesystem.models",
+    "process.spawn",
+    "network.localhost"
+  ],
+  "allowedBinaries": [
+    "llama-server"
+  ],
+  "models": [
+    {
+      "key": "qwen3-reranker-0.6b-Q4_K_M",
+      "format": "gguf",
+      "source": "huggingface",
+      "repo": "QuantFactory/Qwen3-Reranker-0.6B-GGUF",
+      "repoPath": "Qwen3-Reranker-0.6B.Q4_K_M.gguf",
+      "file": "Qwen3-Reranker-0.6B.Q4_K_M.gguf",
+      "approxBytes": 483835680,
+      "sha256": "783d816e7541ba78a5105f949a010217fecf31795c267d69ffa5a96403dff4a7",
+      "license": {
+        "spdx": "Apache-2.0",
+        "redistributable": true,
+        "commercialUseRestricted": false,
+        "requiresAcknowledgement": false,
+        "url": "https://huggingface.co/QuantFactory/Qwen3-Reranker-0.6B-GGUF"
+      }
+    }
+  ],
+  "config": {
+    "contextSize": 4096,
+    "threads": 4
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "natively-extensions",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "Community reranker extensions for Natively. Adapter code only \u2014 no model weights.",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "set-owner": "node scripts/set-owner.mjs",
+    "generate": "node scripts/generate.mjs",
+    "check:generated": "node scripts/generate.mjs && git diff --exit-code",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run build && node --test \"packages/*/__tests__/**/*.test.mjs\"",
+    "guard": "node scripts/guard-weights.mjs",
+    "validate:registry": "node scripts/validate-registry.mjs",
+    "verify:owner": "node scripts/verify-owner.mjs",
+    "prepare": "git config core.hooksPath .githooks || true"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "@types/node": "^20.14.0"
+  }
+}

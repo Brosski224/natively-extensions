@@ -1,0 +1,175 @@
+{
+  "id": "ettin-reranker",
+  "name": "Ettin Reranker",
+  "version": "1.0.0",
+  "apiVersion": "1",
+  "type": "reranker",
+  "entrypoint": "dist/index.js",
+  "author": "community",
+  "homepage": "https://github.com/evinjohnn/natively-extensions",
+  "engines": {
+    "natively": ">=2.8.0"
+  },
+  "permissions": [
+    "filesystem.models"
+  ],
+  "models": [
+    {
+      "key": "ettin-32m-model",
+      "format": "onnx",
+      "source": "huggingface",
+      "repo": "cross-encoder/ettin-reranker-32m-v1",
+      "repoPath": "onnx/model.onnx",
+      "file": "ettin-32m-model.onnx",
+      "approxBytes": 127737036,
+      "sha256": "31061d9f54e8303f5d95cf3433dcf99f50d5f6de283c3b8357452be8c824142f",
+      "license": {
+        "spdx": "Apache-2.0",
+        "redistributable": true,
+        "commercialUseRestricted": false,
+        "requiresAcknowledgement": false,
+        "url": "https://huggingface.co/cross-encoder/ettin-reranker-32m-v1"
+      }
+    },
+    {
+      "key": "ettin-32m-tokenizer",
+      "format": "onnx",
+      "source": "huggingface",
+      "repo": "cross-encoder/ettin-reranker-32m-v1",
+      "repoPath": "tokenizer.json",
+      "file": "ettin-32m-tokenizer.json",
+      "approxBytes": 3583327,
+      "sha256": null,
+      "license": {
+        "spdx": "Apache-2.0",
+        "redistributable": true,
+        "commercialUseRestricted": false,
+        "requiresAcknowledgement": false,
+        "url": "https://huggingface.co/cross-encoder/ettin-reranker-32m-v1"
+      }
+    },
+    {
+      "key": "ettin-32m-config",
+      "format": "onnx",
+      "source": "huggingface",
+      "repo": "cross-encoder/ettin-reranker-32m-v1",
+      "repoPath": "config.json",
+      "file": "ettin-32m-config.json",
+      "approxBytes": 1730,
+      "sha256": null,
+      "license": {
+        "spdx": "Apache-2.0",
+        "redistributable": true,
+        "commercialUseRestricted": false,
+        "requiresAcknowledgement": false,
+        "url": "https://huggingface.co/cross-encoder/ettin-reranker-32m-v1"
+      }
+    },
+    {
+      "key": "ettin-68m-model",
+      "format": "onnx",
+      "source": "huggingface",
+      "repo": "cross-encoder/ettin-reranker-68m-v1",
+      "repoPath": "onnx/model.onnx",
+      "file": "ettin-68m-model.onnx",
+      "approxBytes": 272978775,
+      "sha256": "95505bbc6a95f9bdfad71e55998fec30c5cc0be490e921cbd796d2dbf0243f2f",
+      "license": {
+        "spdx": "Apache-2.0",
+        "redistributable": true,
+        "commercialUseRestricted": false,
+        "requiresAcknowledgement": false,
+        "url": "https://huggingface.co/cross-encoder/ettin-reranker-68m-v1"
+      }
+    },
+    {
+      "key": "ettin-68m-tokenizer",
+      "format": "onnx",
+      "source": "huggingface",
+      "repo": "cross-encoder/ettin-reranker-68m-v1",
+      "repoPath": "tokenizer.json",
+      "file": "ettin-68m-tokenizer.json",
+      "approxBytes": 3583327,
+      "sha256": null,
+      "license": {
+        "spdx": "Apache-2.0",
+        "redistributable": true,
+        "commercialUseRestricted": false,
+        "requiresAcknowledgement": false,
+        "url": "https://huggingface.co/cross-encoder/ettin-reranker-68m-v1"
+      }
+    },
+    {
+      "key": "ettin-68m-config",
+      "format": "onnx",
+      "source": "huggingface",
+      "repo": "cross-encoder/ettin-reranker-68m-v1",
+      "repoPath": "config.json",
+      "file": "ettin-68m-config.json",
+      "approxBytes": 1946,
+      "sha256": null,
+      "license": {
+        "spdx": "Apache-2.0",
+        "redistributable": true,
+        "commercialUseRestricted": false,
+        "requiresAcknowledgement": false,
+        "url": "https://huggingface.co/cross-encoder/ettin-reranker-68m-v1"
+      }
+    },
+    {
+      "key": "ettin-150m-model",
+      "format": "onnx",
+      "source": "huggingface",
+      "repo": "cross-encoder/ettin-reranker-150m-v1",
+      "repoPath": "onnx/model.onnx",
+      "file": "ettin-150m-model.onnx",
+      "approxBytes": 596565114,
+      "sha256": "2c6968436957b7f295e1c60415fc955ba63cd142ba1b332c6cceb925fcb4cd4f",
+      "license": {
+        "spdx": "Apache-2.0",
+        "redistributable": true,
+        "commercialUseRestricted": false,
+        "requiresAcknowledgement": false,
+        "url": "https://huggingface.co/cross-encoder/ettin-reranker-150m-v1"
+      }
+    },
+    {
+      "key": "ettin-150m-tokenizer",
+      "format": "onnx",
+      "source": "huggingface",
+      "repo": "cross-encoder/ettin-reranker-150m-v1",
+      "repoPath": "tokenizer.json",
+      "file": "ettin-150m-tokenizer.json",
+      "approxBytes": 3583327,
+      "sha256": null,
+      "license": {
+        "spdx": "Apache-2.0",
+        "redistributable": true,
+        "commercialUseRestricted": false,
+        "requiresAcknowledgement": false,
+        "url": "https://huggingface.co/cross-encoder/ettin-reranker-150m-v1"
+      }
+    },
+    {
+      "key": "ettin-150m-config",
+      "format": "onnx",
+      "source": "huggingface",
+      "repo": "cross-encoder/ettin-reranker-150m-v1",
+      "repoPath": "config.json",
+      "file": "ettin-150m-config.json",
+      "approxBytes": 2020,
+      "sha256": null,
+      "license": {
+        "spdx": "Apache-2.0",
+        "redistributable": true,
+        "commercialUseRestricted": false,
+        "requiresAcknowledgement": false,
+        "url": "https://huggingface.co/cross-encoder/ettin-reranker-150m-v1"
+      }
+    }
+  ],
+  "config": {
+    "modelSize": "150m",
+    "batchSize": 16
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "updatedAt": "2026-09-04",
+  "extensions": [
+    {
+      "id": "ettin-reranker",
+      "repo": "evinjohnn/natively-extensions",
+      "path": "packages/ettin-reranker",
+      "latestVersion": "1.0.0",
+      "apiVersion": "1",
+      "category": "reranker",
+      "modelLicenses": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "id": "jina-reranker-v35",
+      "repo": "evinjohnn/natively-extensions",
+      "path": "packages/jina-reranker",
+      "latestVersion": "1.0.0",
+      "apiVersion": "1",
+      "category": "reranker",
+      "modelLicenses": [
+        "CC-BY-NC-4.0"
+      ]
+    },
+    {
+      "id": "qwen3-reranker",
+      "repo": "evinjohnn/natively-extensions",
+      "path": "packages/qwen3-reranker",
+      "latestVersion": "1.0.0",
+      "apiVersion": "1",
+      "category": "reranker",
+      "modelLicenses": [
+        "Apache-2.0"
+      ]
+    }
+  ]
+}

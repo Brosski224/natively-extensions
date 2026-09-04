@@ -1,0 +1,14 @@
+{
+  "name": "@natively-extensions/ettin-reranker",
+  "version": "1.0.0",
+  "type": "module",
+  "license": "MIT",
+  "description": "Natively reranker extension: ettin-reranker.",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "onnxruntime-node": "1.22.0"
+  }
+}

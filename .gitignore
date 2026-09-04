@@ -1,0 +1,12 @@
+node_modules/
+dist/
+
+# Model weights are NEVER committed. The CI guard and the pre-commit hook both
+# fail if any of these appear, or if any file exceeds 10 MB.
+*.gguf
+*.onnx
+*.safetensors
+*.bin
+*.pt
+*.pth
+models/

@@ -1,0 +1,61 @@
+{
+  "id": "jina-reranker-v35",
+  "name": "Jina Reranker v3.5",
+  "version": "1.0.0",
+  "apiVersion": "1",
+  "type": "reranker",
+  "entrypoint": "dist/index.js",
+  "author": "community",
+  "homepage": "https://github.com/evinjohnn/natively-extensions",
+  "engines": {
+    "natively": ">=2.8.0"
+  },
+  "permissions": [
+    "filesystem.models",
+    "process.spawn",
+    "network.localhost"
+  ],
+  "allowedBinaries": [
+    "llama-server"
+  ],
+  "models": [
+    {
+      "key": "jina-reranker-v3.5-Q4_K_M",
+      "format": "gguf",
+      "source": "huggingface",
+      "repo": "jinaai/jina-reranker-v3.5-GGUF",
+      "repoPath": "jina-reranker-v3.5-Q4_K_M.gguf",
+      "file": "jina-reranker-v3.5-Q4_K_M.gguf",
+      "approxBytes": 396709504,
+      "sha256": "40ec64a1b8c18a40a79bbd7b516115aec158791e56452e734c36c52a76c245a1",
+      "license": {
+        "spdx": "CC-BY-NC-4.0",
+        "url": "https://huggingface.co/jinaai/jina-reranker-v3.5-GGUF",
+        "redistributable": false,
+        "commercialUseRestricted": true,
+        "requiresAcknowledgement": true
+      }
+    },
+    {
+      "key": "jina-reranker-v3.5-projector",
+      "format": "safetensors",
+      "source": "huggingface",
+      "repo": "jinaai/jina-reranker-v3.5-GGUF",
+      "repoPath": "projector.safetensors",
+      "file": "projector.safetensors",
+      "approxBytes": 1573048,
+      "sha256": "b14c3d97315ca33490e630218c821640f183180fd971c5c3242f5b81aadcedf9",
+      "license": {
+        "spdx": "CC-BY-NC-4.0",
+        "url": "https://huggingface.co/jinaai/jina-reranker-v3.5-GGUF",
+        "redistributable": false,
+        "commercialUseRestricted": true,
+        "requiresAcknowledgement": true
+      }
+    }
+  ],
+  "config": {
+    "contextSize": 4096,
+    "threads": 4
+  }
+}

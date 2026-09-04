@@ -1,0 +1,3 @@
+#!/bin/sh
+# Model weights must never be committed. Same guard CI runs.
+node scripts/guard-weights.mjs --staged || exit 1

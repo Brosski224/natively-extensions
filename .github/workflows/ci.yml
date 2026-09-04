@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    # Natively ships on macOS and Windows, so adapters are verified on both.
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Build
+        run: npm run build
+      - name: Conformance
+        run: npm test
+      - name: Generated files are up to date
+        run: npm run check:generated
+      - name: Owner is centralised
+        run: npm run verify:owner
+      - name: Registry is valid
+        run: npm run validate:registry
+      - name: No model weights committed
+        run: npm run guard
