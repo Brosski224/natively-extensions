@@ -11,7 +11,7 @@
   "scripts": {
     "set-owner": "node scripts/set-owner.mjs",
     "generate": "node scripts/generate.mjs",
-    "check:generated": "node scripts/generate.mjs && git diff --exit-code",
+    "check:generated": "node scripts/generate.mjs && git diff --exit-code -- 'packages/*/extension.json' 'packages/*/README.md' registry.json",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "build": "npm run build --workspaces --if-present",
     "test": "npm run build && node --test \"packages/*/__tests__/**/*.test.mjs\"",

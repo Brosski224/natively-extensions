@@ -58,7 +58,10 @@ export class EttinReranker implements Reranker {
       'The Ettin reranker extension is not finished: its ONNX tokenisation and scoring '
       + 'head are unimplemented, so it cannot rank anything. Natively runs Ettin 32m, 68m '
       + 'and 150m built in — choose one under Settings > Reranker instead. '
-      + 'See https://github.com/evinjohnn/natively-ettin-reranker for the remaining work.');
+      // No repository URL here on purpose: the owner belongs in
+      // extensions.config.json alone, and a hardcoded one goes stale the moment
+      // this repository is transferred or renamed. See this package's README.
+      + 'This package remains as a reference for the extension API.');
   }
 
   async rerank(
