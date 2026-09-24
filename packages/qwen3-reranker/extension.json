@@ -6,7 +6,7 @@
   "type": "reranker",
   "entrypoint": "dist/index.js",
   "author": "community",
-  "homepage": "https://github.com/evinjohnn/natively-extensions",
+  "homepage": "https://github.com/Brosski224/natively-extensions",
   "engines": {
     "natively": ">=2.8.0"
   },

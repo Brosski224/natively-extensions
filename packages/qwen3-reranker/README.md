@@ -10,7 +10,7 @@ A llama.cpp-backed Qwen3 Reranker 0.6B for Natively.
 <!-- BEGIN GENERATED: do not edit by hand, run `npm run generate` -->
 
 ```bash
-git clone https://github.com/evinjohnn/natively-extensions.git
+git clone https://github.com/Brosski224/natively-extensions.git
 cd natively-extensions
 npm install && npm run build
 ```
@@ -18,7 +18,7 @@ npm install && npm run build
 Then in Natively: **Settings → Reranker → Install from folder**, and choose
 `packages/qwen3-reranker` inside the directory you just cloned.
 
-Repository: https://github.com/evinjohnn/natively-extensions
+Repository: https://github.com/Brosski224/natively-extensions
 
 <!-- END GENERATED -->
 

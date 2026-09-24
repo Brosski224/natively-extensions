@@ -4,24 +4,26 @@
   "private": true,
   "type": "module",
   "license": "MIT",
-  "description": "Community reranker extensions for Natively. Adapter code only \u2014 no model weights.",
+  "description": "Community reranker extensions for Natively. Adapter code only — no model weights.",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
     "set-owner": "node scripts/set-owner.mjs",
     "generate": "node scripts/generate.mjs",
-    "check:generated": "node scripts/generate.mjs && git diff --exit-code -- 'packages/*/extension.json' 'packages/*/README.md' registry.json",
+    "check:generated": "node scripts/check-generated.mjs",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "build": "npm run build --workspaces --if-present",
-    "test": "npm run build && node --test \"packages/*/__tests__/**/*.test.mjs\"",
+    "test": "npm run build && node scripts/run-tests.mjs",
     "guard": "node scripts/guard-weights.mjs",
     "validate:registry": "node scripts/validate-registry.mjs",
     "verify:owner": "node scripts/verify-owner.mjs",
-    "prepare": "git config core.hooksPath .githooks || true"
+    "prepare": "git config core.hooksPath .githooks || true",
+    "bundle:release": "npm run build && node scripts/bundle-release.mjs"
   },
   "devDependencies": {
-    "typescript": "^5.6.0",
-    "@types/node": "^20.14.0"
+    "@types/node": "^20.14.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.6.0"
   }
 }
