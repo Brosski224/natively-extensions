@@ -10,3 +10,9 @@ dist/
 *.pt
 *.pth
 models/
+
+# macOS Finder metadata — never useful in a repository.
+.DS_Store
+
+# Release artefacts, produced by scripts/bundle-release.mjs.
+build/

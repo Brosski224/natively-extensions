@@ -1,6 +1,9 @@
 # Natively Extensions
 
-Community reranker extensions for [Natively](https://github.com/natively-ai/natively).
+Community reranker extensions for [Natively](https://natively.software).
+<!-- Linked to the product site, not a GitHub account: this repository is
+     published from a separate account, and a link to the maintainer's
+     personal namespace would tie the two together. -->
 
 **No model weights are in this repository, and none are downloaded without an
 explicit action by you.** The adapter code here is MIT licensed; the models are
@@ -44,12 +47,16 @@ model licences for each package. It contains no code and no weights.
 
 ## Install
 
+<!-- BEGIN GENERATED: do not edit by hand, run `npm run generate` -->
+
 ```bash
-git clone https://github.com/<owner>/natively-extensions.git
+git clone https://github.com/Brosski224/natively-extensions.git
 cd natively-extensions
 npm install
 npm run build
 ```
+
+<!-- END GENERATED -->
 
 Then in Natively: **Settings → Reranker → Install from folder**, and choose the
 `packages/<name>` directory you want.
@@ -57,6 +64,43 @@ Then in Natively: **Settings → Reranker → Install from folder**, and choose 
 `dist/` is not committed, and Natively's installer refuses an extension whose
 entrypoint has not been built — so `npm run build` is required, not advisory.
 There is no `natively` CLI; installing from a folder is the supported path.
+
+## Releases — how Natively installs these without a clone
+
+`dist/` is never committed, and Natively refuses an extension whose entrypoint
+is not built. A clone or a source tarball is therefore **not** installable — only
+a release is.
+
+Cutting one builds each dependency-free package into a single self-contained ESM
+file and publishes three kinds of asset:
+
+| Asset | What it is |
+|---|---|
+| `<id>-<version>.js` | the whole adapter, bundled, no imports to resolve |
+| `<id>-<version>.json` | its `extension.json`, entrypoint rewritten to `dist/index.js` |
+| `registry.json` | every entry, with `https` download URLs, `sha256` and byte counts |
+
+Natively fetches that `registry.json`, verifies each download against its
+`sha256` before writing anything, and then runs its ordinary installer and trust
+prompt. Two plain files rather than an archive, deliberately: there is no
+archive-extraction path, so none to get path traversal wrong.
+
+```bash
+git tag v1.0.0 && git push origin v1.0.0    # or run the Release workflow by hand
+```
+
+The workflow re-runs every check `main` must pass before it publishes anything.
+
+**A sha256 published beside the artefact proves integrity, not authenticity.**
+It catches a truncated or corrupted download. It does not tell you the
+repository was not compromised — the install prompt, which lists every
+permission, is what stands between you and code you did not write.
+
+**Not every package is published.** A package with runtime dependencies is
+excluded automatically, from its own `package.json` rather than a hardcoded
+list. `ettin-reranker` depends on `onnxruntime-node`, a native addon: a bundle
+built on one CI runner would carry one platform's `.node` binary and break the
+other. Natively ships Ettin itself, so nothing is lost.
 
 ## Two things worth knowing before you install
 

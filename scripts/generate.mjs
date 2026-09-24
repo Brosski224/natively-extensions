@@ -77,7 +77,33 @@ for (const pkg of packages) {
   });
 }
 
+// The ROOT README's install block is generated too. It used to be hand-written
+// and shipped a literal `<owner>` placeholder on the repository's front page:
+// check:generated only diffed packages/*, and verify-owner exempts every
+// README.md, so nothing caught it. Generating it closes that gap.
+{
+  const rootBlock = [
+    BEGIN, '',
+    '```bash',
+    `git clone ${repoBase}.git`,
+    `cd ${repo}`,
+    'npm install',
+    'npm run build',
+    '```',
+    '', END,
+  ].join('\n');
+  let rootReadme = readFileSync('README.md', 'utf8');
+  const s = rootReadme.indexOf(BEGIN), e = rootReadme.indexOf(END);
+  if (s === -1 || e === -1) throw new Error('README.md is missing its generated block markers');
+  writeFileSync('README.md', rootReadme.slice(0, s) + rootBlock + rootReadme.slice(e + END.length));
+}
+
+// No timestamp. This file is checked by `npm run check:generated`, which
+// regenerates it and diffs — so a `new Date()` here made the check fail on
+// every day AFTER the commit, forever, while saying "generated files are
+// stale". Git already records when this changed; a date baked into the content
+// only breaks the guard that reads it.
 writeFileSync('registry.json', JSON.stringify(
-  { version: 1, updatedAt: new Date().toISOString().slice(0, 10), extensions: entries }, null, 2) + '\n');
+  { version: 1, extensions: entries }, null, 2) + '\n');
 
 console.log(`Generated ${packages.length} manifests, ${packages.length} README blocks and registry.json for ${owner}/${repo}`);

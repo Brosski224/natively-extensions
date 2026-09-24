@@ -1,0 +1,81 @@
+name: Release
+
+# A release is what makes this repository installable. `dist/` is never
+# committed and Natively refuses an extension whose entrypoint is not built, so
+# a clone or a source tarball cannot be installed — only built artefacts can.
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to publish (e.g. v1.0.0)'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    # Built on macOS, but the artefacts are platform-neutral: only packages
+    # with NO runtime dependencies are published, so nothing native is bundled.
+    # bundle-release.mjs enforces that rather than trusting this comment.
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - run: npm install
+
+      # The same checks main must pass. A release that skipped them would ship
+      # code the repository's own CI would have rejected.
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Conformance
+        run: npm test
+      - name: Generated files are up to date
+        run: npm run check:generated
+      - name: Owner is centralised
+        run: npm run verify:owner
+      - name: No model weights committed
+        run: npm run guard
+
+      - name: Resolve tag
+        id: tag
+        run: echo "value=${{ github.event.inputs.tag || github.ref_name }}" >> "$GITHUB_OUTPUT"
+
+      - name: Bundle
+        env:
+          RELEASE_TAG: ${{ steps.tag.outputs.value }}
+        run: npm run bundle:release
+
+      # The tag in the published registry must match the tag being released, or
+      # every download URL points at a different release's assets.
+      - name: Registry tag matches the release
+        run: |
+          node -e "
+            const r = require('./build/registry.json');
+            const want = process.argv[1];
+            if (r.tag !== want) { console.error('registry tag ' + r.tag + ' != ' + want); process.exit(1); }
+            if (!r.extensions.length) { console.error('registry has no extensions'); process.exit(1); }
+            for (const e of r.extensions) {
+              for (const k of ['code','manifest']) {
+                if (!e.download?.[k]?.startsWith('https://')) { console.error(e.id + ': ' + k + ' url is not https'); process.exit(1); }
+                if (!/^[a-f0-9]{64}\$/.test(e.download.sha256[k])) { console.error(e.id + ': ' + k + ' sha256 malformed'); process.exit(1); }
+              }
+            }
+            console.log('registry OK: ' + r.extensions.length + ' extension(s) at ' + r.tag);
+          " "${{ steps.tag.outputs.value }}"
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ steps.tag.outputs.value }}" \
+            --title "${{ steps.tag.outputs.value }}" \
+            --notes "Built extension artefacts. Adapter code only — no model weights. Natively fetches \`registry.json\` from this release and verifies each download against its sha256 before installing." \
+            --repo "${{ github.repository }}" \
+            build/*.js build/*.json \
+            || gh release upload "${{ steps.tag.outputs.value }}" build/*.js build/*.json --clobber --repo "${{ github.repository }}"
